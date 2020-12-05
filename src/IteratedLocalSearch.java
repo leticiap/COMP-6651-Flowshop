@@ -22,9 +22,9 @@ public class IteratedLocalSearch {
             int makeSpanPie2 = calculateMakespan(pie2);
             int makeSpanPie = calculateMakespan(pie);
             if(makeSpanPie2<makeSpanPie){
-                pie = pie2;
+                pie = new ArrayList<>(pie2);
                 if(makeSpanPie<calculateMakespan(pieBest)){
-                    pieBest = pie;
+                    pieBest = new ArrayList<>(pie);
                 }
             }
             i++;
