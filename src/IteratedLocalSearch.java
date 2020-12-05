@@ -101,7 +101,8 @@ public class IteratedLocalSearch {
 
     private void swap(int i, int j, List<Job> permutation){
         Job temp = permutation.get(i);
-        permutation.add(i, permutation.get(j));
-        permutation.add(j, temp);
+        permutation.set(i, permutation.get(j));
+        permutation.set(j, temp);
+
     }
 }
