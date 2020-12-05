@@ -35,8 +35,11 @@ public class MyTest {
         List<Job> finalSchedule = iteratedLocalSearch.performILS();
 
         // After ILS schedule
+        System.out.println("\nResult after ILS: ");
         for(Job j: finalSchedule){
             System.out.print(j.getJobID() + " ");
         }
+        int makeSpanPostILS = neh.calculateMakespan(finalSchedule);
+        System.out.println("Makespan: " + makeSpanPostILS);
     }
 }

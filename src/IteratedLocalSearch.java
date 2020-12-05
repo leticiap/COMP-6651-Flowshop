@@ -40,7 +40,7 @@ public class IteratedLocalSearch {
             if(ward==1){
                 Job temp = schedule.get(pt2);
                 do{
-                    if(pt2>=0){
+                    if(pt2-1>=0){
                         schedule.set(pt2, schedule.get(pt2-1));
                         pt2 -= 1;
                     }
