@@ -32,7 +32,7 @@ public class MyTest {
 
         // Perform iterated local search
 //        IteratedLocalSearch iteratedLocalSearch = new IteratedLocalSearch(neh.getSchedule(), neh.getMakeSpan());
-//        iteratedLocalSearch.performILS();
+//        List<Job> finalSchedule = iteratedLocalSearch.performILS();
 
     }
 }
