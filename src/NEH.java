@@ -158,7 +158,7 @@ public class NEH {
      * @param jobs
      */
     NEH(List<Job> jobs){
-        this.jobs = jobs;
+        this.jobs = new ArrayList<>(jobs);
         this.schedule = new ArrayList<>();
         this.makeSpan = 0;
     }

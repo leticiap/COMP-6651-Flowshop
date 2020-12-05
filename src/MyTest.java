@@ -31,8 +31,12 @@ public class MyTest {
         neh.getInitialSolution();
 
         // Perform iterated local search
-//        IteratedLocalSearch iteratedLocalSearch = new IteratedLocalSearch(neh.getSchedule(), neh.getMakeSpan());
-//        List<Job> finalSchedule = iteratedLocalSearch.performILS();
+        IteratedLocalSearch iteratedLocalSearch = new IteratedLocalSearch(neh.getSchedule(), neh.getMakeSpan());
+        List<Job> finalSchedule = iteratedLocalSearch.performILS();
 
+        // After ILS schedule
+        for(Job j: finalSchedule){
+            System.out.print(j.getJobID() + " ");
+        }
     }
 }

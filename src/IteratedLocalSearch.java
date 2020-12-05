@@ -6,7 +6,7 @@ public class IteratedLocalSearch {
     private int initialMakeSpan;
 
     IteratedLocalSearch(List<Job> initialSchedule, int initialMakeSpan){
-        this.initialSchedule = initialSchedule;
+        this.initialSchedule = new ArrayList<>(initialSchedule);
         this.initialMakeSpan = initialMakeSpan;
     }
 
@@ -33,6 +33,30 @@ public class IteratedLocalSearch {
     }
 
     public List<Job> perturbation(List<Job> schedule){
+        int pt1 = (int)(Math.random()*(schedule.size()));
+        int pt2 = (int)(Math.random()*(schedule.size()));
+        while(pt1==pt2){
+            int ward = getRandomBinary();
+            if(ward==1){
+                Job temp = schedule.get(pt2);
+                do{
+                    if(pt2>=0){
+                        schedule.set(pt2, schedule.get(pt2-1));
+                        pt2 -= 1;
+                    }
+                }while(pt2>pt1);
+                schedule.set(pt2, temp);
+            } else {
+                Job temp = schedule.get(pt1);
+                do{
+                    if(pt1+1<schedule.size()){
+                        schedule.set(pt1, schedule.get(pt1+1));
+                        pt1 += 1;
+                    }
+                }while(pt1<pt2);
+                schedule.set(pt1, temp);
+            }
+        }
         return schedule;
     }
 
@@ -103,6 +127,12 @@ public class IteratedLocalSearch {
         Job temp = permutation.get(i);
         permutation.set(i, permutation.get(j));
         permutation.set(j, temp);
+    }
 
+    private int getRandomBinary(){
+        if(Math.random()<=0.5)
+            return 0;
+        else
+            return 1;
     }
 }
