@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Data {
+public class Job {
     /**
      * Class to hold job details.
      * Stores three items as follows:
@@ -14,13 +14,16 @@ public class Data {
     private int jobID;
     private List<Integer> processingTimes;
     private int totalTime;
+    private int sizePT;
 
-    Data(int jobID, ArrayList<Integer> processingTimes){
+    Job(int jobID, ArrayList<Integer> processingTimes){
         this.jobID = jobID;
         this.processingTimes = processingTimes;
         this.totalTime = 0;
+        this.sizePT = 0;
         for(Integer i: processingTimes){
-            totalTime += i;
+            this.totalTime += i;
+            this.sizePT++;
         }
     }
 
@@ -32,22 +35,26 @@ public class Data {
         return processingTimes;
     }
 
+    public int getSizePT() {
+        return sizePT;
+    }
+
     public int getTotalTime() {
         return totalTime;
     }
 }
 
-class DataComparator implements Comparator<Data>{
+class JobComparator implements Comparator<Job>{
     /**
      * Comparator to compare total time taken on all machines.
      * Essential for first step of NEH.
-     * @param o1 Data object 1
-     * @param o2 Data object 2
+     * @param o1 Job object 1
+     * @param o2 Job object 2
      * @return Number to result in descending order of the two objects
      */
 
     @Override
-    public int compare(Data o1, Data o2) {
+    public int compare(Job o1, Job o2) {
         if(o1.getTotalTime()==o2.getTotalTime()){
           return 0;
         } else if(o1.getTotalTime()<o2.getTotalTime()){
