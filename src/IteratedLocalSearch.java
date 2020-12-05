@@ -11,14 +11,14 @@ public class IteratedLocalSearch {
     }
 
     public List<Job> performILS(){
-        List<Job> pie = this.initialSchedule;
-        List<Job> pieBest = pie;
+        List<Job> pie = new ArrayList<>(this.initialSchedule);
+        List<Job> pieBest = new ArrayList<>(pie);
 
         // determine stopping criteria. Currently, it's counter to 100.
         int i = 1;
         while(i<=100){
-            List<Job> pie1 = perturbation(pie);
-            List<Job> pie2 = localSearch(pie1);
+            List<Job> pie1 = new ArrayList<>(perturbation(pie));
+            List<Job> pie2 = new ArrayList<>(localSearch(pie1));
             int makeSpanPie2 = calculateMakespan(pie2);
             int makeSpanPie = calculateMakespan(pie);
             if(makeSpanPie2<makeSpanPie){
@@ -33,11 +33,25 @@ public class IteratedLocalSearch {
     }
 
     public List<Job> perturbation(List<Job> schedule){
-        return new ArrayList<>();
+        return schedule;
     }
 
     public List<Job> localSearch(List<Job> pie1){
-        return new ArrayList<>();
+        List<Job> initialPermutation = new ArrayList<>(pie1);
+        List<Job> startPermutation;
+        do{
+            startPermutation = new ArrayList<>(initialPermutation);
+            List<Job> permutation = new ArrayList<>(initialPermutation);
+            for(int i=0;i<permutation.size();i++){
+                for(int j=i+1; j<permutation.size(); j++){
+                    swap(i,j, permutation);
+                    if(calculateMakespan(permutation)<calculateMakespan(initialPermutation)){
+                        initialPermutation = new ArrayList<>(permutation);
+                    }
+                }
+            }
+        } while(calculateMakespan(initialPermutation)<calculateMakespan(startPermutation));
+        return startPermutation;
     }
 
     /**
@@ -83,5 +97,11 @@ public class IteratedLocalSearch {
         totalMakespan = sumLst.get(sumLst.size() - 1)[sumLst.get(sumLst.size() - 1).length - 1];
 
         return totalMakespan;
+    }
+
+    private void swap(int i, int j, List<Job> permutation){
+        Job temp = permutation.get(i);
+        permutation.add(i, permutation.get(j));
+        permutation.add(j, temp);
     }
 }
