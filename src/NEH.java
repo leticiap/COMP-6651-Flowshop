@@ -312,4 +312,12 @@ public class NEH {
 
         return totalMakespan;
     }
+
+    public List<Job> getSchedule() {
+        return schedule;
+    }
+
+    public int getMakeSpan() {
+        return makeSpan;
+    }
 }
