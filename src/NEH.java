@@ -199,16 +199,12 @@ public class NEH {
                 if(tempSchedule.size()==schedule.size())
                     tempSchedule.add(jobs.get(j));
 
-//            	System.out.println("TTTTTTTTemp Schedule:");
-//                for(Job d: tempSchedule){
-//                    System.out.print(d.getJobID()+",");
-//                }
-//                System.out.println();
-                // the makespan of sequence is calculated
-                if(calculateMakespan(tempSchedule) < temp ) {
-                    temp = calculateMakespan(tempSchedule);
-                    minMakespanSchedule = tempSchedule;
-                }
+            	// the makespan of sequence is calculated
+            	int tempScheduleMakespan = calculateMakespan(tempSchedule);
+            	if(tempScheduleMakespan < temp ) {
+            		temp = tempScheduleMakespan;
+            		minMakespanSchedule = tempSchedule;
+            	}
             }
             // the sequence with lowest makespan is set as scheduled
             if(!minMakespanSchedule.isEmpty()) {
