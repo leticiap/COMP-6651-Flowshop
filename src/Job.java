@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Class that defines a job
+ * Stores three items as follows:
+ *  1) Job id
+ *  2) List of processing times on each machine
+ *  3) Total time taken by the job on all machines
+ */
 public class Job {
-    /**
-     * Class to hold job details.
-     * Stores three items as follows:
-     *  1) Job id
-     *  2) List of processing times on each machine
-     *  3) Total time taken by the job on all machines
-     */
     private int jobID;
     private List<Integer> processingTimes;
     private int totalTime;

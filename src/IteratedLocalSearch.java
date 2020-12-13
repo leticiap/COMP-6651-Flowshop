@@ -1,6 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Class for the Iterated Local Search
+ * 
+ * Contains all necessary methods to execute ILS given
+ * a specific schedule of jobs
+ * 
+ * @see Job
+ */
 public class IteratedLocalSearch {
     private List<Job> initialSchedule;
     private int initialMakeSpan;
@@ -10,6 +19,10 @@ public class IteratedLocalSearch {
         this.initialMakeSpan = initialMakeSpan;
     }
 
+    /**
+     * Executes ILS and Perturbation on the given schedule
+     * @return the final version of the schedule organized by the ILS heuristic
+     */
     public List<Job> performILS(){
         List<Job> pie = new ArrayList<>(this.initialSchedule);
         List<Job> pieBest = new ArrayList<>(pie);
@@ -32,6 +45,11 @@ public class IteratedLocalSearch {
         return pieBest;
     }
 
+    /**
+     * Executes perturbation on a given list of jobs
+     * @param schedule - list of jobs
+     * @return a new reorganized list of the same jobs
+     */
     public List<Job> perturbation(List<Job> schedule){
         int pt1 = (int)(Math.random()*(schedule.size()));
         int pt2 = (int)(Math.random()*(schedule.size()));
@@ -59,7 +77,12 @@ public class IteratedLocalSearch {
         }
         return schedule;
     }
-
+    
+    /**
+     * Executes the iterated local search on a given list of jobs
+     * @param pie1 - list of jobs
+     * @return a new reorganized list of the same jobs
+     */
     public List<Job> localSearch(List<Job> pie1){
         List<Job> initialPermutation = new ArrayList<>(pie1);
         List<Job> startPermutation;
@@ -123,12 +146,22 @@ public class IteratedLocalSearch {
         return totalMakespan;
     }
 
+    /**
+     * Swaps jobs in two positions i and j inside the permutation list
+     * @param i - first index
+     * @param j - second index
+     * @param permutation - list of jobs
+     */
     private void swap(int i, int j, List<Job> permutation){
         Job temp = permutation.get(i);
         permutation.set(i, permutation.get(j));
         permutation.set(j, temp);
     }
 
+    /**
+     * Return a random binary 0 or 1
+     * @return random integer
+     */
     private int getRandomBinary(){
         if(Math.random()<=0.5)
             return 0;
